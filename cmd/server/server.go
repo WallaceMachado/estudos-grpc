@@ -4,6 +4,8 @@ import (
 	"log"
 	"net"
 
+	"github.com/wallacemachado/estudos-grpc/pb"
+	"github.com/wallacemachado/estudos-grpc/services"
 	"google.golang.org/grpc"
 )
 
@@ -16,6 +18,9 @@ func main() {
 
 	// instancing a new server gRPC
 	grpcServer := grpc.NewServer()
+
+	// registering new services
+	pb.RegisterUserServiceServer(grpcServer, services.NewUserService())
 
 	// serving the server on port specified
 	if err := grpcServer.Serve(listener); err != nil {
