@@ -27,3 +27,13 @@ https://developers.google.com/protocol-buffers/docs/gotutorial
 $ go get google.golang.org/protobuf/cmd/protoc-gen-go@latest
 $ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
  ```
+Criando protofile e stubs
+ ```bash
+ protoc --proto_path=proto proto/*.proto --go_out=pb --go-grpc_out=pb
+
+--proto_path=proto -> pegando a pasta proto
+proto/*.proto -> pegar todos os arquivos proto da pasta proto
+--go_out=pb -> gerar os arquivos em go (neste exemplo será criado dentro da pasta pb o arquivo user.pb.go)
+--go-grpc_out=pb -> (stubs)criando os arquivos que possibilitam a comunicação via grpc (neste exemplo será criado dentro da pasta pb o arquivo user_grpc.pb.go)
+
+```
