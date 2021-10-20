@@ -37,3 +37,13 @@ proto/*.proto -> pegar todos os arquivos proto da pasta proto
 --go-grpc_out=pb -> (stubs)criando os arquivos que possibilitam a comunicação via grpc (neste exemplo será criado dentro da pasta pb o arquivo user_grpc.pb.go)
 
 ```
+
+Implementando servidor grpc
+
+```bash
+aṕos criando o arquivo de implementação do servidor grpc
+
+executar o comando abaixo para subir o servidor
+
+go run cmd/server/server.go
+```
