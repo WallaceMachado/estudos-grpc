@@ -47,3 +47,26 @@ executar o comando abaixo para subir o servidor
 
 go run cmd/server/server.go
 ```
+
+instalar evans - para subir um servidor client
+github.com/ktr0731/evans
+```bash
+
+evans -r repl --host localhost --port 50051
+
+```
+
+Fazendo peimria chamada grcp
+
+```bash
+iniciar servidor
+
+go run cmd/server/server.go
+
+instalar evans
+
+go get [github.com/ktr0731/evans](http://github.com/ktr0731/evans)
+
+evans -r repl --host localhost --port 50051
+
+```

@@ -7,6 +7,7 @@ import (
 	"github.com/wallacemachado/estudos-grpc/pb"
 	"github.com/wallacemachado/estudos-grpc/services"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -21,6 +22,7 @@ func main() {
 
 	// registering new services
 	pb.RegisterUserServiceServer(grpcServer, services.NewUserService())
+	reflection.Register(grpcServer)
 
 	// serving the server on port specified
 	if err := grpcServer.Serve(listener); err != nil {
