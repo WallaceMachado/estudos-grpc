@@ -2,6 +2,9 @@ package services
 
 import (
 	"context"
+	"fmt"
+	"io"
+	"log"
 	"time"
 
 	"github.com/wallacemachado/estudos-grpc/pb"
@@ -69,4 +72,32 @@ func (*UserService) AddUserVerbose(payload *pb.User, stream pb.UserService_AddUs
 	})
 
 	return nil
+}
+
+func (*UserService) AddUsers(stream pb.UserService_AddUsersServer) error {
+	// Insertion in database stay here
+
+	users := []*pb.User{}
+
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return stream.SendAndClose(&pb.Users{
+				User: users,
+			})
+		}
+
+		if err != nil {
+			log.Fatal("Error receiving stream: %v", err)
+		}
+
+		users = append(users, &pb.User{
+			Id:    req.Id,
+			Name:  req.Name,
+			Email: req.Email,
+		})
+
+		fmt.Println("Adding", req.GetName())
+	}
+
 }
